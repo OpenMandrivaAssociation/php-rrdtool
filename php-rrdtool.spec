@@ -20,7 +20,6 @@ BuildRequires:	rrdtool-devel >= 1.2.7
 BuildRequires:	png-devel
 BuildRequires:	zlib-devel
 BuildRequires:	php-devel >= 3:5.2.0
-BuildRoot:	%{_tmppath}/%{name}-root
 
 %description
 The php-rrdtool package is a dynamic shared object (DSO) that adds RRDtool
