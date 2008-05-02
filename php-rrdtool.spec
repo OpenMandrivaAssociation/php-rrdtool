@@ -11,7 +11,7 @@
 Summary:	The %{realname} module for PHP
 Name:		php-%{modname}
 Version:	0
-Release:	%mkrel 13
+Release:	%mkrel 14
 Group:		Development/PHP
 License:	GPL
 URL:		http://ee-staff.ethz.ch/~oetiker/webtools/rrdtool/
@@ -20,7 +20,7 @@ BuildRequires:	rrdtool-devel >= 1.2.7
 BuildRequires:	png-devel
 BuildRequires:	zlib-devel
 BuildRequires:	php-devel >= 3:5.2.0
-BuildRoot:	%{_tmppath}/%{name}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The php-rrdtool package is a dynamic shared object (DSO) that adds RRDtool
