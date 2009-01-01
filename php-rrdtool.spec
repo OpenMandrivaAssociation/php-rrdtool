@@ -11,7 +11,7 @@
 Summary:	The %{realname} module for PHP
 Name:		php-%{modname}
 Version:	0
-Release:	%mkrel 17
+Release:	%mkrel 18
 Group:		Development/PHP
 License:	GPL
 URL:		http://ee-staff.ethz.ch/~oetiker/webtools/rrdtool/
