@@ -16,6 +16,7 @@ Group:		Development/PHP
 License:	GPL
 URL:		http://ee-staff.ethz.ch/~oetiker/webtools/rrdtool/
 Source0:	http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/contrib/php_rrdtool.tar.bz2
+Patch0:		php_rrdtool-php54x.diff
 BuildRequires:	gettext-devel
 BuildRequires:	rrdtool-devel >= 1.2.7
 BuildRequires:	png-devel
@@ -30,6 +31,7 @@ support to PHP.
 %prep
 
 %setup -q -n rrdtool
+%patch0 -p0
 
 # lib64 fix
 perl -pi -e "s|/lib\b|/%{_lib}|g" config.m4
