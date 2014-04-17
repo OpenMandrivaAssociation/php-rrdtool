@@ -1,0 +1,96 @@
+diff -Naurp rrdtool/php_rrdtool.h rrdtool.oden/php_rrdtool.h
+--- rrdtool/php_rrdtool.h	2005-11-26 07:56:52.000000000 +0100
++++ rrdtool.oden/php_rrdtool.h	2013-06-14 17:14:49.216988114 +0200
+@@ -31,8 +31,6 @@ extern zend_module_entry rrdtool_module_
+ #include "TSRM.h"
+ #endif
+ 
+-#define RRDTOOL_LOGO_GUID		"PHP25B1F7E8-916B-11D9-9A54-000A95AE92DA"
+-
+ /* If you declare any globals in php_rrdtool.h uncomment this:
+ ZEND_BEGIN_MODULE_GLOBALS(rrdtool)
+ 
+@@ -51,7 +49,6 @@ PHP_FUNCTION(rrd_update);
+ PHP_FUNCTION(rrd_last);
+ PHP_FUNCTION(rrd_create);
+ PHP_FUNCTION(rrdtool_info);
+-PHP_FUNCTION(rrdtool_logo_guid);
+ 
+ #else
+ 
+diff -Naurp rrdtool/rrdtool.c rrdtool.oden/rrdtool.c
+--- rrdtool/rrdtool.c	2013-06-14 17:16:32.200622625 +0200
++++ rrdtool.oden/rrdtool.c	2013-06-14 17:15:44.440328389 +0200
+@@ -24,13 +24,11 @@
+ 
+ /* PHP Includes */
+ #include "php.h"
+-#include "php_logos.h"
+ #include "ext/standard/info.h"
+ #include "SAPI.h"
+ 
+ /* rrdtool includes */
+ #include "php_rrdtool.h"
+-#include "rrdtool_logo.h"
+ #include <rrd.h>
+ 
+ #if HAVE_RRDTOOL
+@@ -48,7 +46,6 @@ zend_function_entry rrdtool_functions[]
+ 	PHP_FE(rrd_last,				NULL)
+ 	PHP_FE(rrd_create,				NULL)
+ 	PHP_FE(rrdtool_info,			NULL)
+-	PHP_FE(rrdtool_logo_guid,		NULL)
+ 	{NULL, NULL, NULL}
+ };
+ 
+@@ -86,8 +83,6 @@ ZEND_GET_MODULE(rrdtool)
+ /* {{{ PHP_MINIT_FUNCTION */
+ PHP_MINIT_FUNCTION(rrdtool)
+ {
+-	php_register_info_logo(RRDTOOL_LOGO_GUID   , "image/gif", rrdtool_logo   , sizeof(rrdtool_logo));
+-	
+ 	return SUCCESS;
+ }
+ /* }}} */
+@@ -95,8 +90,6 @@ PHP_MINIT_FUNCTION(rrdtool)
+ /* {{{ PHP_MSHUTDOWN_FUNCTION */
+ PHP_MSHUTDOWN_FUNCTION(rrdtool)
+ {
+-	php_unregister_info_logo(RRDTOOL_LOGO_GUID);
+-	
+ 	return SUCCESS;
+ }
+ /* }}} */
+@@ -109,7 +102,6 @@ PHP_MINFO_FUNCTION(rrdtool)
+ 	if (SG(request_info).request_uri) {
+ 		PUTS(SG(request_info).request_uri);
+ 	}
+-	PUTS("?="RRDTOOL_LOGO_GUID"\" alt=\"ClamAV logo\" /></a>\n");
+ 	php_printf("<h1 class=\"p\">rrdtool Version %s</h1>\n", PHP_RRD_VERSION_STRING);
+ 	php_info_print_box_end();
+ 	php_info_print_table_start();
+@@ -557,7 +549,6 @@ PHP_FUNCTION(rrdtool_info)
+ 	if (SG(request_info).request_uri) {
+ 		PUTS(SG(request_info).request_uri);
+ 	}
+-	PUTS("?="RRDTOOL_LOGO_GUID"\" alt=\"ClamAV logo\" /></a>\n");
+ 	php_printf("<h1 class=\"p\">rrdtool Version %s</h1>\n", PHP_RRD_VERSION_STRING);
+ 	php_info_print_box_end();
+ 	php_info_print_table_start();
+@@ -595,16 +586,6 @@ PHP_FUNCTION(rrdtool_info)
+ }
+ /* }}} */
+ 
+-PHP_FUNCTION(rrdtool_logo_guid)
+-{
+-	if (ZEND_NUM_ARGS() != 0) {
+-		WRONG_PARAM_COUNT;
+-	}
+-
+-	RETURN_STRINGL(RRDTOOL_LOGO_GUID, sizeof(RRDTOOL_LOGO_GUID)-1, 1);
+-}
+-/* }}} */
+-
+ #endif	/* HAVE_RRDTOOL */
+ 
+ /*
