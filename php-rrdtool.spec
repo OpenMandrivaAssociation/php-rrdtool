@@ -12,7 +12,7 @@ Summary:	The %{realname} module for PHP
 
 Name:		php-%{modname}
 Version:	0
-Release:	35
+Release:	36
 Group:		Development/PHP
 License:	GPL
 URL:		http://ee-staff.ethz.ch/~oetiker/webtools/rrdtool/
