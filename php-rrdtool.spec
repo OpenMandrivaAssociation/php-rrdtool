@@ -15,7 +15,7 @@ Version:	0
 Release:	36
 Group:		Development/PHP
 License:	GPL
-URL:		http://ee-staff.ethz.ch/~oetiker/webtools/rrdtool/
+URL:		https://ee-staff.ethz.ch/~oetiker/webtools/rrdtool/
 Source0:	http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/contrib/php_rrdtool.tar.bz2
 Patch0:		php_rrdtool-php54x.diff
 Patch1:         rrdtool-no_logo.diff
